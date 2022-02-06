@@ -1,32 +1,43 @@
 import { useState } from "react";
 import { Container } from "./styles";
 export function Todo() {
-  const [tools, setTools] = useState([]);
+  const [tasks, setTasks] = useState([]);
+  const [taskTitle,setTaskTitle] = useState("");
 
-  const handleAddTools = () => {
-    const teste = 
-      {
-        id: 1,
-        titleTool: "Comprar Arroz",
-        indFinish: false,
-      }
+  const handleAddTask = () => {
+    if(!!taskTitle){
+      const newTask = 
+        {
+          id: Date.now(),
+          taskTitle: taskTitle,
+          indFinish: false,
+        }
+        setTasks((oldTask) => [...oldTask, newTask]);
+        setTaskTitle("");
+        
+    }else{
+      alert("Tarefa não preenchida")
+    }
     ;
-    setTools((oldTools) => [...oldTools, teste]);
   };
+
+  const handleFinishTask = (idTask) =>{
+    setTasks(tasks.map((t) => t.id === idTask ? {...t,indFinish:!t.indFinish} : t));
+  }
 
   return (
     <Container>
       <div className="inputs">
-        <input type="text" placeholder="Tarefa" />
-        <button type="button" onClick={handleAddTools}>
+        <input type="text" placeholder="Tarefa" value={taskTitle} onChange={({target}) => setTaskTitle(target.value) } />
+        <button type="button" onClick={handleAddTask}>
           Add
         </button>
       </div>
-      <div className="tools-box">
-        {tools.map((tool) => (
-          <div className="tools" key={tool.id}>
-            <input type="checkbox" />
-            <label>{tool.titleTool}</label>
+      <div className="task-box">
+        {tasks.map((task) => (
+          <div className="task" key={task.id}>
+            <input type="checkbox" onClick={() => handleFinishTask(task.id)}/>
+            <label className={task.indFinish ? "task-finishied" : ""}>{task.taskTitle}</label>
           </div>
         ))}
       </div>

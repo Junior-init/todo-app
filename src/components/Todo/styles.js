@@ -31,19 +31,23 @@ export const Container = styled.main`
     }
   }
 
-  .tools-box {
+  .task-box {
     width: 600px;
     max-height: 100;
     overflow-y: auto;
     padding: 15px;
     background-color: #eee;
 
-    .tools{
+    .task{
         border-bottom: 1px solid #ddd;
         padding: 10px 0;
         margin-bottom: 15px;
         input{
             margin-right: 5px;
+            cursor: pointer;
+        }
+        .task-finishied{
+          text-decoration: line-through;
         }
     }
   }
