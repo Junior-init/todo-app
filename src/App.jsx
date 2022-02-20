@@ -1,9 +1,8 @@
 import { Todo } from "./components/Todo";
-import GlobalStyle from "./styles/global";
+import "./styles/global.scss";
 function App() {
   return (
     <>
-      <GlobalStyle />
       <Todo/>
     </>
   );

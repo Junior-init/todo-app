@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container } from "./styles";
+import "./styles.scss";
 export function Todo() {
   const [tasks, setTasks] = useState([]);
   const [taskTitle,setTaskTitle] = useState("");
@@ -26,7 +26,7 @@ export function Todo() {
   }
 
   return (
-    <Container>
+    <main className="container">
       <div className="inputs">
         <input type="text" placeholder="Tarefa" value={taskTitle} onChange={({target}) => setTaskTitle(target.value) } />
         <button type="button" onClick={handleAddTask}>
@@ -41,6 +41,6 @@ export function Todo() {
           </div>
         ))}
       </div>
-    </Container>
+    </main>
   );
 }
