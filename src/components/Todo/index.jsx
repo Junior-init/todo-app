@@ -25,6 +25,10 @@ export function Todo() {
     setTasks(tasks.map((t) => t.id === idTask ? {...t,indFinish:!t.indFinish} : t));
   }
 
+  const handleDeleteTask = (idTask) => {
+    setTasks(tasks.filter((t) => t.id !== idTask));
+  }
+
   return (
     <main className="container">
       <div className="inputs">
@@ -38,6 +42,7 @@ export function Todo() {
           <div className="task" key={task.id}>
             <input type="checkbox" onClick={() => handleFinishTask(task.id)}/>
             <label className={task.indFinish ? "task-finishied" : ""}>{task.taskTitle}</label>
+            <span onClick={() => handleDeleteTask(task.id)}>X</span>
           </div>
         ))}
       </div>
